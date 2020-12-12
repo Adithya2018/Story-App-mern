@@ -40,14 +40,14 @@ const data = {
 const newBlogPost = new BlogPost(data); // instance of the model
 
 // .save()
-newBlogPost.save((error) => {
-    if(error){
-        console.log("This is embarassing!");
-    }
-    else{
-        console.log("Data has been saved!!");
-    }
-});
+// newBlogPost.save((error) => {
+//     if(error){
+//         console.log("This is embarassing!");
+//     }
+//     else{
+//         console.log("Data has been saved!!");
+//     }
+// });
 
 // HTTP request logger
 app.use(morgan('tiny'));
@@ -55,11 +55,16 @@ app.use(morgan('tiny'));
 // Routes
 
 app.get('/api', (req, res) => {
-    const data = {
-        username: "Adithyan",
-        age: 21
-    }
-    res.json(data);
+    
+    BlogPost.find({ })
+    .then( (data) => {
+        console.log('Data: ' + data);
+        res.json(data);
+    })
+    .catch( (error) => {
+        console.log('Error: ' + error);     
+    });
+
 });
 
 app.get('/api/name', (req, res) => {
