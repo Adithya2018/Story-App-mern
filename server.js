@@ -42,6 +42,6 @@ mongoose.connection.on('connected', () =>{
 // HTTP request logger
 app.use(morgan('tiny'));
 
-app.route('/', routes);
+app.use('/api', routes);
 
 app.listen(PORT, console.log(`Server is starting at ${PORT}`));
