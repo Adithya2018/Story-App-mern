@@ -6,6 +6,11 @@ const path = require('path');
 const app = express()
 const PORT = process.env.PORT || 8080;
 
+mongoose.connect('', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+});
+
 // HTTP request logger
 app.use(morgan('tiny'));
 
