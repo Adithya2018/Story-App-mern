@@ -39,6 +39,10 @@ mongoose.connection.on('connected', () =>{
 // //     }
 // // });
 
+// changes the req to json or urlencoded 
+app.use(express.json());
+app.use(express.urlencoded( {extended: false} ));
+
 // HTTP request logger
 app.use(morgan('tiny'));
 
