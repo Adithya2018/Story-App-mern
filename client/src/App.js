@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 
+import './App.css';
+
 class App extends React.Component{
 
   state = {
@@ -85,8 +87,9 @@ class App extends React.Component{
     
     // JSX
     return(
-      <div>
-        <h3>Testing</h3>
+      <div className='app'>
+        <h1>A place to write your Adventures</h1>
+        <h3></h3>
         <form onSubmit={this.submit}>
           <div className="form-input">
             <input 
@@ -103,7 +106,7 @@ class App extends React.Component{
               value={this.state.body} 
               name="body" 
               cols="30" 
-              rows="10" 
+              rows="50" 
               onChange={this.handleChange}
             >
               
