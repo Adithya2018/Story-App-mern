@@ -5,8 +5,25 @@ class App extends React.Component{
 
   state = {
     title: '',
-    body: ''
+    body: '',
+    posts: []
   };
+
+  componentDidMount = () => {
+    this.getBlogPost();
+  };
+
+  getBlogPost = () => {
+    axios.get('/api')
+    .then((response) => {
+      const data = response.data;
+      this.setState({posts: data});
+      console.log('Your Data has been recieved!');
+    })
+    .catch(() => {
+      alert('Error retrieving Data!');
+    })
+  }
 
   handleChange = ({target}) => {
     const {name, value} = target;
@@ -33,6 +50,7 @@ class App extends React.Component{
     .then( () => {
       console.log('Data has been sent to the server!');
       this.resetUserInputs();
+      this.getBlogPost();
     })
     .catch( () => {
       console.log('Internal Server Error');
@@ -45,6 +63,19 @@ class App extends React.Component{
       title: '',
       body: ''
     });
+  };
+
+  displayBlogPost = (posts) => {
+
+    if (!posts.length) return null;
+
+    return posts.map( (post, index) => {
+      <div key={index}>
+        <h3>{post.title}</h3>
+        <p>{post.body}</p>
+      </div>
+    });
+
   };
 
   render(){
@@ -80,6 +111,9 @@ class App extends React.Component{
           </div>
           <button>Submit</button>
         </form>
+        <div className="blog-">
+          {this.displayBlogPost(this.state.posts)}
+        </div>
       </div>
     );
   }
