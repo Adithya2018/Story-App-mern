@@ -23,7 +23,7 @@ class App extends React.Component{
     .catch(() => {
       alert('Error retrieving Data!');
     })
-  }
+  };
 
   handleChange = ({target}) => {
     const {name, value} = target;
@@ -69,13 +69,13 @@ class App extends React.Component{
 
     if (!posts.length) return null;
 
-    return posts.map( (post, index) => {
-      <div key={index}>
+
+    return posts.map((post, index) => (
+      <div key={index} className="blog-post__display">
         <h3>{post.title}</h3>
         <p>{post.body}</p>
       </div>
-    });
-
+    ));
   };
 
   render(){
@@ -111,7 +111,7 @@ class App extends React.Component{
           </div>
           <button>Submit</button>
         </form>
-        <div className="blog-">
+        <div className="blog-post">
           {this.displayBlogPost(this.state.posts)}
         </div>
       </div>
