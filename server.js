@@ -50,4 +50,9 @@ app.use(morgan('tiny'));
 
 app.use('/api', routes);
 
+// Step 3
+if(process.env.NODE_ENV === 'production'){
+    app.use(express.static('client/build'));
+}
+
 app.listen(PORT, console.log(`Server is starting at ${PORT}`));
