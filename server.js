@@ -4,13 +4,15 @@ const morgan = require('morgan');
 const path = require('path');
 
 const app = express()
+// Step 1
 const PORT = process.env.PORT || 8080;
 
 const routes = require('./routes/api');
 
 // const MONGODB_URI = 'mongodb+srv://Adi:JJWaGAnUDMQAEick@cluster0.k9z4b.mongodb.net/Stories?retryWrites=true&w=majority'
 
-mongoose.connect('mongodb://localhost/storyApp', {
+// Step 2
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/storyApp', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
